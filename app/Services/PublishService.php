@@ -22,17 +22,28 @@ class PublishService
     public const POOL_TIMEOUT = 10;
 
     /**
-     * Create a topic subription
+     * Create a topic notiification and dispatch job
      * @param SubscribeDto $dto
      * 
      * @return App\Models\Notification
      */
     public function publishTopic(PublishDto $dto): Notification
     {
-        return tap($dto->getTopic()->notifications()->firstOrCreate($dto->toArray()), function($notification) {
+        return tap($this->createNotification($dto), function ($notification) {
             NotifySubscribers::dispatch($notification);
         });
 
+    }
+
+    /**
+     * Create a topic notification
+     * @param SubscribeDto $dto
+     * 
+     * @return App\Models\Notification
+     */
+    public function createNotification(PublishDto $dto): Notification
+    {
+        return $dto->getTopic()->notifications()->firstOrCreate($dto->toArray());
     }
 
     /**
