@@ -15,7 +15,8 @@ A simple notification service based on pub/sub architecture.
 - Run ```composer install```
 - Run ```php artisan migrate```
 - Run ```php artisan db:seed```
-- Run ```php artisan migrate```
+- Run ```php artisan serve```
+- Run ```php artisan queue:work --tries=1``` (In another terminal, within the project directory)
 
 ## Testing
 
@@ -27,8 +28,7 @@ For testing, run ```php artisan test```
 
 This application was  built using a "**Request -> Validation -> DTO -> Service -> Response**" pattern
 
-HTTP requests are firstly validated in a form request. After which a **data transfer object** is created
-from the request. A service class, receives the DTO and acts on it, returning an optional value which may
+HTTP requests are firstly validated using form request instances which are injected into the controller actions. After this, a **data transfer object (DTO)** is then retrieved from the request. A service class, receives the DTO and acts on it, returning an optional value which may
 then be sent back as a response.
 
 ### Database Schema
