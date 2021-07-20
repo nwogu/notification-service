@@ -28,8 +28,7 @@ For testing, run ```php artisan test```
 
 This application was  built using a "**Request -> Validation -> DTO -> Service -> Response**" pattern
 
-HTTP requests are firstly validated using form request instances which are injected into the controller actions. After this, a **data transfer object (DTO)** is then retrieved from the request. A service class, receives the DTO and acts on it, returning an optional value which may
-then be sent back as a response.
+HTTP requests are firstly validated using form request instances which are injected into the controller. A **data transfer object (DTO)** is then retrieved from the request. A service class, receives the DTO and acts on it, returning an optional value which may then be sent back as a response.
 
 ### Database Schema
 There are 4 entities used to persist data for the entirety of the pub/sub process
